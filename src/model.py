@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-litho_core.py -- physics engine for the Litho Lab dashboard (no GUI code here)
+model.py -- physics engine for the dashboard (no GUI code here)
 ===============================================================================
 
 Hybrid optical model:

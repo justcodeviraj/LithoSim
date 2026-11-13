@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Litho Lab: ILT mask optimisation, MEEP mask EMF, 4f relay and resist model.
+"""ILT mask optimisation, MEEP mask EMF, 4f relay and resist model.
 
 Pipeline (see README.md):
   target -> ILT (OpenILT SimpleILT, 1D cutline) -> MEEP FDTD near field of the real
@@ -12,9 +12,9 @@ Windows:
   System diagram   opened from the top bar (conceptual view, not part of the simulation)
 
 Run:
-    python litho_lab.py
-    python litho_lab.py --openilt ~/OpenILT
-    python litho_lab.py --headless --out litho_run
+    python sim.py
+    python sim.py --openilt ~/OpenILT
+    python sim.py --headless --out litho_run
 """
 
 from __future__ import annotations
@@ -22,14 +22,14 @@ from __future__ import annotations
 import argparse
 import math
 import time
-
+import os
 import numpy as np
 
 import ilt1d
-import litho_core as C
-from litho_ui import (TH, Button, Check, LogList, Page, ProgressBar, Segmented, Slider)
-from litho_util import make_idea_mask, mrc_clean, runs
-from litho_windows import ILTMonitor, ResultsWindow, SystemDiagram, engine_name
+import model as C
+from ui import (TH, Button, Check, LogList, Page, ProgressBar, Segmented, Slider)
+from util import make_idea_mask, mrc_clean, runs
+from windows import ILTMonitor, ResultsWindow, SystemDiagram, engine_name
 
 FIELD_UPDATE_EVERY = 1.0 / (C.FCEN * 3.0)   # three display samples per optical cycle
 FIELD_ENERGY_TAU = 2.0 / C.FCEN            # smooth the MEEP intensity over ~2 optical cycles
@@ -1058,7 +1058,7 @@ class LithoLab:
         self.system_window.show()
 
     def save(self, path=None):
-        path = path or time.strftime("litho_dashboard_%Y%m%d_%H%M%S.png")
+        path = path or os.path.join("results", time.strftime("litho_dashboard_%Y%m%d_%H%M%S.png"))
         self.page.save(path)
         self._log(f"Saved {path}")
         return path
@@ -1066,7 +1066,7 @@ class LithoLab:
     def save_results(self, path=None):
         if self.results_window is None:
             raise RuntimeError("No printed result is available yet")
-        path = path or time.strftime("litho_results_%Y%m%d_%H%M%S.png")
+        path = path or os.path.join("results", time.strftime("litho_results_%Y%m%d_%H%M%S.png"))
         self.results_window.save(path)
         return path
 

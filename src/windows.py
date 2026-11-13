@@ -7,9 +7,9 @@ import time
 import numpy as np
 from matplotlib.patches import Circle, Ellipse, Polygon, Rectangle
 
-import litho_core as C
-from litho_ui import TH, Button, Page
-from litho_util import runs, spans
+import model as C
+from ui import TH, Button, Page
+from util import runs, spans
 
 BLUE, ORG = TH["accent"], TH["orange"]
 
@@ -43,7 +43,7 @@ class ILTMonitor:
         self.fig = None
         if not self.live:
             return
-        from litho_ui import ProgressBar
+        from LithoSim.src.ui import ProgressBar
         p = self.page = Page(1600, 900, fig_w=13.5, title="Litho Lab - ILT monitor", live=True)
         self.fig = p.fig
         p.top_bar("ILT optimisation monitor", subtitle or "OpenILT SimpleILT  |  1D mask cutline  |  "
