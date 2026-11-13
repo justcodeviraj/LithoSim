@@ -36,7 +36,7 @@ If the ILT report shows zero SGD updates, make sure all files from the same rele
 
 The window has a parameter panel on the left, the live field display in the centre and status information on the right. Figure 1 marks every region; the table below explains each one.
 
-![Main window with labelled regions](docs/images/main_window_map.png)
+![Main window with labelled regions](src/snaps/main_window_map.png)
 
 *Figure 1. Main window at the end of a run, with the pulse of the last source point arriving at the resist. Letters refer to the table.*
 
@@ -65,7 +65,7 @@ Changing the resist model, threshold or dose after a print does not repeat the F
 
 Figure 2 numbers every control in the parameter panel. The tables that follow use the same numbers.
 
-![Parameter panel with numbered controls](docs/images/parameters.png)
+![Parameter panel with numbered controls](src/snaps/parameters.png)
 
 *Figure 2. The parameter panel with each control numbered.*
 
@@ -131,7 +131,7 @@ The value next to any slider can be clicked and typed over: Enter accepts the va
 
 The simulator has four stages, shown by indicator A in Figure 1. The system view (button B) is a conceptual picture of what is being simulated.
 
-![Conceptual view of the lithography system](docs/images/system_view.png)
+![Conceptual view of the lithography system](src/snaps/system_view.png)
 
 *Figure 3. System view. The mask is solved with Maxwell's equations; the lens and resist are numerical models.*
 
@@ -159,7 +159,7 @@ Above about 0.5 a binary mask prints the target and ILT has little to improve. B
 
 A real scanner does not illuminate the mask with a single plane wave. Light arrives from a range of angles described by the source shape, whose radius is measured in σ: σ = 1 is the largest angle the lens can accept, so a ray at σ = 0.8 enters at 0.8 times the lens NA.
 
-![The four source shapes and their sample points](docs/images/sources.png)
+![The four source shapes and their sample points](src/snaps/sources.png)
 
 *Figure 4. The four source shapes in the pupil (top) and the weights of the five Abbe sample points along the cutline (bottom). Conventional uses outer σ 0.8; annular and dipole use σ 0.5 to 0.8.*
 
@@ -212,7 +212,7 @@ The starting mask is the target shrunk inward by up to four pixels per edge, the
 
 At the end the continuous mask is binarised once. A threshold between 0.35 and 0.65 is scanned and the one giving the lowest loss is kept, then a mask-rule check removes openings and chrome segments narrower than three pixels (about 75 nm at the default resolution). The binary array that results is exactly what MEEP receives.
 
-![ILT monitor after 100 accepted updates](docs/images/ilt_monitor.png)
+![ILT monitor after 100 accepted updates](src/snaps/ilt_monitor.png)
 
 *Figure 5. The ILT monitor at the end of a run. Top: the current mask (the target used directly). Middle: the ILT mask, redrawn in place at every accepted update, with orange ticks where it differs from the current mask and a plot of its transmission. Bottom: the objective against iteration, with the "no ILT" and starting-mask levels, and a summary.*
 
@@ -252,7 +252,7 @@ The Results window compares the print with the target and, when the ILT mask was
 
 This section reads one complete run. The settings are the defaults with a conventional source of outer σ 0.9: 193 nm, NA 0.45, CD 160 nm (k1 = 0.37), the iso + dense pattern, the Sigmoid resist with threshold 0.30, dose 1.0 and no defocus. ILT ran 100 SGD updates with OpenILT's `SimpleILT`.
 
-![Print results for the example run](docs/images/results_example.png)
+![Print results for the example run](src/snaps/results_example.png)
 
 *Figure 6. The Results window. Each cross-section shows the mask on top and the yellow resist on silicon below it; the pale region is resist etched away. Dashed guides link each target trench to the resist and are numbered as in the table.*
 
